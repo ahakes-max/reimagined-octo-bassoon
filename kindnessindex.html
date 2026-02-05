@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Kindness Challenge Presentation</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a kid-friendly look -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Comic Neue', cursive;
+            background-color: #1a202c;
+            overflow: hidden; /* Prevent scrolling */
+        }
+        h1, h2, h3, .heading-font {
+            font-family: 'Fredoka', sans-serif;
+        }
+        /* Slide Transitions */
+        .slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+       
+        /* Custom Animations */
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(-5%); }
+            50% { transform: translateY(5%); }
+        }
+        .animate-bounce-slow {
+            animation: bounce-slow 3s infinite;
+        }
+
+        /* Card Styling */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Loading Spinner */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #3498db;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col">
+
+    <!-- MAIN SLIDE AREA -->
+    <main id="presentation-area" class="flex-grow relative bg-white w-full flex items-center justify-center overflow-hidden">
+       
+        <!-- Navigation Buttons -->
+        <button onclick="changeSlide(-1)" class="absolute left-4 z-20 bg-white/80 hover:bg-white text-gray-800 p-4 rounded-full shadow-lg transition transform hover:scale-110 focus:outline-none group">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-400 group-hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <button onclick="changeSlide(1)" class="absolute right-4 z-20 bg-white/80 hover:bg-white text-gray-800 p-4 rounded-full shadow-lg transition transform hover:scale-110 focus:outline-none group">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-400 group-hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" /></svg>
+        </button>
+
+        <!-- SLIDE 1: TITLE -->
+        <div class="slide active w-full h-full flex-col items-center justify-center text-center p-8 bg-gradient-to-br from-blue-100 to-purple-100" data-note="Welcome class! Today we are going on a mission to become Kindness Experts.">
+            <div class="text-9xl mb-4 animate-bounce-slow">🤝✨</div>
+            <h1 class="text-6xl md:text-7xl font-bold text-indigo-600 mb-6 drop-shadow-sm tracking-wide">The Kindness Challenge</h1>
+            <h2 class="text-4xl text-purple-600 font-bold mb-8 bg-white/60 inline-block px-8 py-2 rounded-full">Giving Great Compliments!</h2>
+            <p class="text-2xl text-gray-600 max-w-2xl bg-white px-8 py-6 rounded-2xl shadow-xl border-b-8 border-indigo-200">
+                How to use your words to fill someone’s bucket. 🪣💖
+            </p>
+        </div>
+
+        <!-- SLIDE 2: WHAT IS A COMPLIMENT? -->
+        <div class="slide w-full h-full flex-col items-center justify-center p-8 bg-pink-50" data-note="Ask: 'How do you feel when someone says something nice to you?' (Happy, warm). Tell them giving a compliment is like a 'verbal hug'.">
+            <h2 class="text-5xl font-bold text-pink-500 mb-12">What is a Compliment?</h2>
+            <div class="flex flex-col md:flex-row items-center gap-12 max-w-5xl">
+                <div class="text-[10rem]">🎁</div>
+                <ul class="space-y-6 text-left">
+                    <li class="card p-6 text-3xl text-gray-700 flex items-center gap-4">
+                        <span class="text-pink-400 text-4xl">●</span> It is like a <strong>gift</strong> you give with words.
+                    </li>
+                    <li class="card p-6 text-3xl text-gray-700 flex items-center gap-4">
+                        <span class="text-pink-400 text-4xl">●</span> It is saying something nice about someone.
+                    </li>
+                    <li class="card p-6 text-3xl text-gray-700 flex items-center gap-4">
+                        <span class="text-pink-400 text-4xl">●</span> It makes others feel happy and proud!
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: WHY DO WE DO IT? -->
+        <div class="slide w-full h-full flex-col items-center justify-center p-8 bg-yellow-50" data-note="Giving compliments changes the energy in the room. It makes YOU feel good too!">
+            <h2 class="text-5xl font-bold text-yellow-600 mb-12">Why Give Compliments?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full px-4">
+                <!-- Box 1 -->
+                <div class="card p-8 flex flex-col items-center text-center transform hover:scale-105 transition border-b-8 border-yellow-300 h-full">
+                    <div class="text-7xl mb-4">☀️</div>
+                    <h3 class="text-3xl font-bold text-yellow-600 mb-2">Spread Sunshine</h3>
+                    <p class="text-2xl text-gray-600">Changes a bad day into a good day.</p>
+                </div>
+                <!-- Box 2 -->
+                <div class="card p-8 flex flex-col items-center text-center transform hover:scale-105 transition border-b-8 border-yellow-300 h-full">
+                    <div class="text-7xl mb-4">🤗</div>
+                    <h3 class="text-3xl font-bold text-yellow-600 mb-2">Make Friends</h3>
+                    <p class="text-2xl text-gray-600">Shows people you care about them.</p>
+                </div>
+                <!-- Box 3 -->
+                <div class="card p-8 flex flex-col items-center text-center transform hover:scale-105 transition border-b-8 border-yellow-300 h-full">
+                    <div class="text-7xl mb-4">🥰</div>
+                    <h3 class="text-3xl font-bold text-yellow-600 mb-2">Feel Good</h3>
+                    <p class="text-2xl text-gray-600">Making others happy makes <em>you</em> happy!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: THE 3 MAGIC STARTERS -->
+        <div class="slide w-full h-full flex-col items-center justify-center p-8 bg-indigo-50" data-note="These are tools for your friendship toolbox. We will practice each one.">
+            <h2 class="text-5xl font-bold text-indigo-600 mb-8">The 3 Magic Starters 🪄</h2>
+            <p class="text-2xl text-gray-500 mb-10">Sometimes it is hard to know what to say. Use these!</p>
+           
+            <div class="space-y-6 w-full max-w-4xl">
+                <div class="bg-blue-100 p-6 rounded-2xl flex items-center gap-6 border-l-8 border-blue-500 shadow-sm">
+                    <span class="text-6xl font-bold text-blue-500 opacity-50">1</span>
+                    <span class="text-4xl font-bold text-blue-700">"I appreciate..."</span>
+                </div>
+                <div class="bg-green-100 p-6 rounded-2xl flex items-center gap-6 border-l-8 border-green-500 shadow-sm">
+                    <span class="text-6xl font-bold text-green-500 opacity-50">2</span>
+                    <span class="text-4xl font-bold text-green-700">"Thank you for..."</span>
+                </div>
+                <div class="bg-orange-100 p-6 rounded-2xl flex items-center gap-6 border-l-8 border-orange-500 shadow-sm">
+                    <span class="text-6xl font-bold text-orange-500 opacity-50">3</span>
+                    <span class="text-4xl font-bold text-orange-700">"You make me smile when..."</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: STARTER 1 -->
+        <div class="slide w-full h-full flex-col items-center justify-center p-8 bg-blue-50" data-note="Activity: Turn to your neighbor right now and say 'I appreciate that you...'">
+            <div class="absolute top-0 left-0 w-full h-4 bg-blue-400"></div>
+            <h2 class="text-5xl font-bold text-blue-600 mb-4">Magic Starter #1</h2>
+            <div class="bg-white px-12 py-6 rounded-full shadow-lg mb-10 border-4 border-blue-200">
+                <h3 class="text-4xl font-bold text-gray-800">"I appreciate..."</h3>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-10 max-w-6xl">
+                <!-- Usage -->
+                <div class="flex-1 bg-blue-100 p-8 rounded-3xl">
+                    <h4 class="text-2xl font-bold text-blue-800 mb-4 uppercase tracking-wider">When to use it:</h4>
+                    <p class="text-3xl text-blue-900 leading-relaxed">When you notice someone working hard or being helpful.</p>
+                </div>
+                <!-- Examples -->
+                <div class="flex-1 bg-white p-8 rounded-3xl shadow-lg border-2 border-blue-100">
+                    <h4 class="text-2xl font-bold text-gray-400 mb-4 uppercase tracking-wider">Examples:</h4>
+                    <ul class="space-y-4 text-2xl text-gray-700">
+                        <li class="flex gap-3"><span class="text-blue-500">➜</span> "...how hard you worked on that drawing."</li>
+                        <li class="flex gap-3"><span class="text-blue-500">➜</span> "...that you waited for me at lunch."</li>
+                        <li class="flex gap-3"><span class="text-blue-500">➜</span> "...how you keep your desk so tidy."</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 bg-blue-600 text-white px-8 py-3 rounded-full animate-pulse">
+                <strong class="text-xl">ACTIVITY: Turn to your neighbor and try it!</strong>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: STARTER 2 -->
+        <div class="slide w-full h-full flex-col items-center justify-center p-8 bg-green-50" data-note="Thank you is powerful. It tells the other person you noticed their kindness.">
+            <div class="absolute top-0 left-0 w-full h-4 bg-green-400"></div>
+            <h2 class="text-5xl font-bold text-green-600 mb-4">Magic Starter #2</h2>
+            <div class="bg-white px-12 py-6 rounded-full shadow-lg mb-10 border-4 border-green-200">
+                <h3 class="text-4xl font-bold text-gray-800">"Thank you for..."</h3>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-10 max-w-6xl">
+                <div class="flex-1 bg-green-100 p-8 rounded-3xl">
+                    <h4 class="text-2xl font-bold text-green-800 mb-4 uppercase tracking-wider">When to use it:</h4>
+                    <p class="text-3xl text-green-900 leading-relaxed">When you want to show gratitude (being thankful).</p>
+                </div>
+                <div class="flex-1 bg-white p-8 rounded-3xl shadow-lg border-2 border-green-100">
+                    <h4 class="text-2xl font-bold text-gray-400 mb-4 uppercase tracking-wider">Examples:</h4>
+                    <ul class="space-y-4 text-2xl text-gray-700">
+                        <li class="flex gap-3"><span class="text-green-500">➜</span> "...sharing your markers with me."</li>
+                        <li class="flex gap-3"><span class="text-green-500">➜</span> "...including me in your game."</li>
+                        <li class="flex gap-3"><span class="text-green-500">➜</span> "...being a good listener."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: STARTER 3 -->
+        <div class="slide w-full h-full flex-col items-center justify-center p-8 bg-orange-50" data-note="This is a great compliment for close friends or someone who looks a little sad.">
+            <div class="absolute top-0 left-0 w-full h-4 bg-orange-400"></div>
+            <h2 class="text-5xl font-bold text-orange-600 mb-4">Magic Starter #3</h2>
+            <div class="bg-white px-12 py-6 rounded-full shadow-lg mb-10 border-4 border-orange-200">
+                <h3 class="text-4xl font-bold text-gray-800">"You make me smile when..."</h3>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-10 max-w-6xl">
+                <div class="flex-1 bg-orange-100 p-8 rounded-3xl">
+                    <h4 class="text-2xl font-bold text-orange-800 mb-4 uppercase tracking-wider">When to use it:</h4>
+                    <p class="text-3xl text-orange-900 leading-relaxed">When someone is fun or brings you joy!</p>
+                </div>
+                <div class="flex-1 bg-white p-8 rounded-3xl shadow-lg border-2 border-orange-100">
+                    <h4 class="text-2xl font-bold text-gray-400 mb-4 uppercase tracking-wider">Examples:</h4>
+                    <ul class="space-y-4 text-2xl text-gray-700">
+                        <li class="flex gap-3"><span class="text-orange-500">➜</span> "...you tell funny jokes."</li>
+                        <li class="flex gap-3"><span class="text-orange-500">➜</span> "...you say hello in the morning."</li>
+                        <li class="flex gap-3"><span class="text-orange-500">➜</span> "...we play tag together."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ** NEW SLIDE 8: AI COMPLIMENT MACHINE ** -->
+        <div class="slide w-full h-full flex-col items-center justify-center p-8 bg-purple-50" data-note="AI TIME! Let the robot help you write a compliment.">
+            <h2 class="text-4xl md:text-5xl font-bold text-purple-600 mb-4">The Compliment Machine 🤖✨</h2>
+            <p class="text-xl text-gray-500 mb-6">Need help thinking of one? Ask the friendly bot!</p>
+           
+            <div class="bg-white p-8 rounded-3xl shadow-2xl max-w-3xl w-full border-b-8 border-purple-400">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-gray-700 text-lg font-bold mb-2">Who is it for?</label>
+                        <input type="text" id="recipientName" placeholder="e.g., Best Friend, Teacher, Mom" class="w-full p-4 rounded-xl border-2 border-purple-200 focus:border-purple-500 focus:outline-none text-xl bg-purple-50">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 text-lg font-bold mb-2">What did they do? (Optional)</label>
+                        <input type="text" id="recipientAction" placeholder="e.g., Shared lunch, Helped me" class="w-full p-4 rounded-xl border-2 border-purple-200 focus:border-purple-500 focus:outline-none text-xl bg-purple-50">
+                    </div>
+                </div>
+
+                <button onclick="generateCompliment()" id="generateBtn" class="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-bold py-4 px-8 rounded-xl text-2xl shadow-md transition transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
+                    <span>✨ Write Magic Compliment ✨</span>
+                </button>
+
+                <!-- Output Area -->
+                <div class="mt-8 relative min-h-[120px] flex items-center justify-center">
+                    <div id="complimentLoader" class="loader hidden absolute"></div>
+                    <div id="complimentResult" class="hidden text-center">
+                        <div class="text-3xl text-gray-800 font-bold font-handwriting leading-relaxed">
+                            "<span id="complimentText">...</span>"
+                        </div>
+                        <p class="text-sm text-gray-400 mt-4">Powered by Gemini AI ♊</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9 (Was 8): HEART VS STUFF -->
+        <div class="slide w-full h-full flex-col items-center justify-center p-8 bg-slate-50" data-note="Goal: Try to give more HEART compliments. They last much longer than compliments about shoes or toys.">
+            <h2 class="text-5xl font-bold text-slate-700 mb-12">❤️ Heart vs. Stuff 🧢</h2>
+           
+            <div class="flex flex-col md:flex-row gap-8 max-w-6xl w-full">
+                <!-- Stuff -->
+                <div class="flex-1 bg-gray-200 p-8 rounded-3xl text-center opacity-70">
+                    <div class="text-6xl mb-4">👟🎒</div>
+                    <h3 class="text-3xl font-bold text-gray-600 mb-4">Stuff Compliments</h3>
+                    <p class="text-2xl text-gray-600">Nice things about what people <strong>have</strong>.</p>
+                    <p class="mt-4 text-xl italic text-gray-500">(Shoes, toys, backpacks)</p>
+                </div>
+
+                <!-- Heart -->
+                <div class="flex-1 bg-red-100 p-8 rounded-3xl text-center shadow-xl transform scale-105 border-4 border-red-300 relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 text-9xl text-red-200 opacity-50">❤️</div>
+                    <div class="text-6xl mb-4 relative z-10">🧠✨</div>
+                    <h3 class="text-3xl font-bold text-red-600 mb-4 relative z-10">Heart Compliments</h3>
+                    <p class="text-2xl text-red-800 relative z-10">Nice things about who people <strong>are</strong>.</p>
+                    <p class="mt-4 text-xl italic text-red-700 relative z-10">(Kind, funny, smart, helpful)</p>
+                    <div class="mt-6 inline-block bg-red-500 text-white px-4 py-2 rounded-lg text-lg font-bold shadow-sm relative z-10">
+                        🏆 Try to give these!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10 (Was 9): RECEIVING -->
+        <div class="slide w-full h-full flex-col items-center justify-center p-8 bg-teal-50" data-note="You don't have to look away or say 'No I'm not'. Just smile and say Thanks!">
+            <h2 class="text-4xl md:text-5xl font-bold text-teal-700 mb-8 text-center">What if I GET a compliment?</h2>
+           
+            <div class="flex flex-col items-center">
+                <div class="relative bg-white p-12 rounded-[3rem] shadow-xl border-b-8 border-teal-200 mb-10 text-center">
+                    <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[20px] border-l-transparent border-t-[30px] border-t-white border-r-[20px] border-r-transparent"></div>
+                    <p class="text-2xl text-gray-400 mb-2">Just say...</p>
+                    <h1 class="text-7xl font-bold text-teal-500">"Thank You!"</h1>
+                </div>
+
+                <div class="flex gap-4 md:gap-8 mt-4">
+                    <div class="bg-teal-100 px-6 py-4 rounded-xl text-teal-800 text-xl font-bold">😊 Just Smile</div>
+                    <div class="bg-teal-100 px-6 py-4 rounded-xl text-teal-800 text-xl font-bold">👀 Eye Contact</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11 (Was 10): QUIZ -->
+        <div class="slide w-full h-full flex-col items-center justify-center p-4 bg-purple-50 overflow-y-auto" data-note="Read the scenarios. Ask students to guess the best choice before revealing it.">
+            <h2 class="text-4xl font-bold text-purple-700 mb-6 mt-4">Let's Practice! (Quiz Time) 🕵️‍♀️</h2>
+           
+            <div class="grid gap-6 w-full max-w-4xl pb-4">
+               
+                <!-- Scenario A -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-l-8 border-purple-300">
+                    <p class="text-xl text-gray-500 font-bold mb-2">Scenario A:</p>
+                    <p class="text-2xl text-gray-800 mb-4">Your friend held the door open for you.</p>
+                    <button onclick="revealAnswer(this)" class="bg-purple-100 hover:bg-purple-200 text-purple-700 px-6 py-2 rounded-lg font-bold transition w-full text-left flex justify-between items-center group">
+                        <span>❓ Tap to see best choice</span>
+                        <span class="group-hover:translate-x-2 transition">👉</span>
+                    </button>
+                    <div class="hidden mt-4 p-4 bg-green-50 text-green-800 rounded-lg text-2xl font-bold border border-green-200">
+                        "Thank you for holding the door!"
+                    </div>
+                </div>
+
+                <!-- Scenario B -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-l-8 border-blue-300">
+                    <p class="text-xl text-gray-500 font-bold mb-2">Scenario B:</p>
+                    <p class="text-2xl text-gray-800 mb-4">Your classmate told a great story in front of the class.</p>
+                    <button onclick="revealAnswer(this)" class="bg-blue-100 hover:bg-blue-200 text-blue-700 px-6 py-2 rounded-lg font-bold transition w-full text-left flex justify-between items-center group">
+                        <span>❓ Tap to see best choice</span>
+                        <span class="group-hover:translate-x-2 transition">👉</span>
+                    </button>
+                    <div class="hidden mt-4 p-4 bg-green-50 text-green-800 rounded-lg text-2xl font-bold border border-green-200">
+                        "I appreciate how brave you were to speak up."
+                    </div>
+                </div>
+
+                <!-- Scenario C -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-l-8 border-orange-300">
+                    <p class="text-xl text-gray-500 font-bold mb-2">Scenario C:</p>
+                    <p class="text-2xl text-gray-800 mb-4">Your friend did a silly dance that made you laugh.</p>
+                    <button onclick="revealAnswer(this)" class="bg-orange-100 hover:bg-orange-200 text-orange-700 px-6 py-2 rounded-lg font-bold transition w-full text-left flex justify-between items-center group">
+                        <span>❓ Tap to see best choice</span>
+                        <span class="group-hover:translate-x-2 transition">👉</span>
+                    </button>
+                    <div class="hidden mt-4 p-4 bg-green-50 text-green-800 rounded-lg text-2xl font-bold border border-green-200">
+                        "You make me smile when you are goofy!"
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SLIDE 12 (Was 11): MISSION - WITH AI UPGRADE -->
+        <div class="slide w-full h-full flex-col items-center justify-center p-8 bg-gradient-to-t from-yellow-200 to-yellow-50" data-note="Send them off with energy! 'Ready? GO BE KIND!'">
+            <h2 class="text-6xl font-bold text-yellow-600 mb-4">🚀 Your Mission</h2>
+           
+            <div class="bg-white p-8 rounded-3xl shadow-2xl max-w-4xl text-center border-b-8 border-yellow-400 w-full">
+                <p class="text-3xl text-gray-700 mb-4">Give <strong>3 compliments</strong> today.</p>
+                <div class="flex flex-col md:flex-row gap-6 items-start">
+                    <!-- Standard Mission -->
+                    <div class="text-left space-y-2 bg-gray-50 p-6 rounded-xl w-full md:w-1/2">
+                        <p class="text-lg text-gray-500 font-bold uppercase">Standard Mission:</p>
+                        <p class="text-xl text-blue-600 font-bold">1. I appreciate...</p>
+                        <p class="text-xl text-green-600 font-bold">2. Thank you for...</p>
+                        <p class="text-xl text-orange-600 font-bold">3. You make me smile when...</p>
+                    </div>
+
+                    <!-- AI Mission Generator -->
+                    <div class="bg-yellow-50 p-6 rounded-xl w-full md:w-1/2 border-2 border-yellow-200">
+                        <p class="text-lg text-yellow-800 font-bold uppercase mb-2">✨ Secret AI Mission ✨</p>
+                        <p id="missionText" class="text-xl text-gray-700 italic min-h-[60px] flex items-center justify-center">
+                            Press the button for a unique challenge!
+                        </p>
+                        <button onclick="generateMission()" id="missionBtn" class="mt-4 w-full bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-2 px-4 rounded-lg shadow transition">
+                            Generate Secret Mission 🕵️‍♀️
+                        </button>
+                        <div id="missionLoader" class="loader hidden mx-auto mt-2"></div>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <h3 class="text-5xl font-bold text-indigo-600 animate-pulse">GO BE KIND! 💖</h3>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER / TEACHER MODE -->
+    <footer class="bg-gray-900 text-white p-4 flex justify-between items-center z-30 h-24 border-t-4 border-gray-700 flex-shrink-0">
+        <div class="flex items-center gap-6">
+            <div class="text-2xl font-bold text-gray-400 font-mono">
+                <span id="slide-number">1</span> / 12
+            </div>
+            <button onclick="toggleNotes()" id="note-toggle" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded text-lg font-bold transition shadow-lg flex items-center gap-2">
+                <span>📝</span> Show Teacher Notes
+            </button>
+        </div>
+       
+        <div id="notes-display" class="hidden flex-1 px-8 text-center">
+            <p id="note-text" class="text-xl text-yellow-300 italic font-serif leading-tight"></p>
+        </div>
+
+        <div class="hidden md:block text-gray-500 text-sm font-mono">
+            Use ⬅️ ➡️ Arrow Keys
+        </div>
+    </footer>
+
+    <script>
+        // --- SLIDESHOW LOGIC ---
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const slideNumberDisplay = document.getElementById('slide-number');
+        const noteTextDisplay = document.getElementById('note-text');
+        const notesContainer = document.getElementById('notes-display');
+        const noteToggleBtn = document.getElementById('note-toggle');
+
+        function showSlide(index) {
+            if (index < 0) index = 0;
+            if (index >= slides.length) index = slides.length - 1;
+
+            slides[currentSlide].classList.remove('active');
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+           
+            slideNumberDisplay.textContent = currentSlide + 1;
+           
+            const note = slides[currentSlide].getAttribute('data-note');
+            noteTextDisplay.textContent = note ? `"${note}"` : "No specific notes for this slide.";
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        function toggleNotes() {
+            if (notesContainer.classList.contains('hidden')) {
+                notesContainer.classList.remove('hidden');
+                noteToggleBtn.innerHTML = "<span>🚫</span> Hide Notes";
+                noteToggleBtn.classList.replace('bg-indigo-600', 'bg-gray-600');
+            } else {
+                notesContainer.classList.add('hidden');
+                noteToggleBtn.innerHTML = "<span>📝</span> Show Teacher Notes";
+                noteToggleBtn.classList.replace('bg-gray-600', 'bg-indigo-600');
+            }
+        }
+
+        function revealAnswer(btn) {
+            const answerDiv = btn.nextElementSibling;
+            answerDiv.classList.remove('hidden');
+            btn.classList.add('hidden');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            }
+        });
+
+        showSlide(0);
+
+
+        // --- GEMINI API LOGIC ---
+        const apiKey = ""; // API Key will be injected by environment
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+        async function callGemini(promptText) {
+            // Exponential backoff retry logic
+            const maxRetries = 5;
+            let delay = 1000;
+           
+            for (let i = 0; i <= maxRetries; i++) {
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: promptText }] }],
+                            systemInstruction: {
+                                parts: [{ text: "You are a friendly, encouraging kindness coach for elementary students (ages 6-10). Speak simply, enthusiastically, and safely. Use emojis." }]
+                            }
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "Oops! My kindness circuits got confused. Try again!";
+                   
+                } catch (error) {
+                    if (i === maxRetries) {
+                        console.error('Final attempt failed:', error);
+                        return "Sorry, I'm having trouble connecting right now. Try again later!";
+                    }
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2; // Double the delay
+                }
+            }
+        }
+
+        // Feature 1: Compliment Generator
+        async function generateCompliment() {
+            const name = document.getElementById('recipientName').value;
+            const action = document.getElementById('recipientAction').value;
+           
+            if (!name) {
+                alert("Please enter who the compliment is for!");
+                return;
+            }
+
+            const loader = document.getElementById('complimentLoader');
+            const resultDiv = document.getElementById('complimentResult');
+            const textSpan = document.getElementById('complimentText');
+            const btn = document.getElementById('generateBtn');
+
+            // UI State: Loading
+            loader.classList.remove('hidden');
+            resultDiv.classList.add('hidden');
+            btn.disabled = true;
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            const prompt = `Write a kind, short, and sweet compliment for an elementary school student to give to their ${name}.
+            Context (what they did): ${action || "being a great person"}.
+            Keep it under 20 words. Use simple words. Add one emoji.`;
+
+            const compliment = await callGemini(prompt);
+
+            // UI State: Success
+            loader.classList.add('hidden');
+            resultDiv.classList.remove('hidden');
+            textSpan.textContent = compliment;
+            btn.disabled = false;
+            btn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        // Feature 2: Secret Mission Generator
+        async function generateMission() {
+            const loader = document.getElementById('missionLoader');
+            const textP = document.getElementById('missionText');
+            const btn = document.getElementById('missionBtn');
+
+            // UI State: Loading
+            loader.classList.remove('hidden');
+            textP.classList.add('hidden');
+            btn.disabled = true;
+
+            const prompt = `Generate a fun, specific, and safe 'Kindness Secret Mission' for a child to do at school today.
+            Examples: 'High five 3 people', 'Ask someone about their favorite color'.
+            Keep it under 15 words. Make it exciting!`;
+
+            const mission = await callGemini(prompt);
+
+            // UI State: Success
+            loader.classList.add('hidden');
+            textP.classList.remove('hidden');
+            textP.textContent = mission;
+            btn.disabled = false;
+        }
+
+    </script>
+</body>
+</html>
